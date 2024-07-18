@@ -24,22 +24,36 @@ def list_authors():
     for author in authors:
         click.echo(f'ID: {author[0]}, Name: {author[1]}')
 
-@click.command()
+@cli.command()
 @click.argument('author_id', type=int)
 @click.argument('name')
 def update_author(author_id, name):
-    click.echo(f'Author with ID {author_id} updated to "{name}".')
+    """Update an author"""
+    author_service.update_author(author_id, name)
+    click.echo(f'Author with ID {author_id} updated.')
 
-@click.command()
+@cli.command()
 @click.argument('author_id', type=int)
-def delete_author(author_id):
+def soft_delete_author(author_id):
+    """Soft delete an author"""
+    author_service.delete_author(author_id)
     click.echo(f'Author with ID {author_id} deleted.')
 
 # Add commands to the CLI group
 cli.add_command(add_author)
 cli.add_command(list_authors)
 cli.add_command(update_author)
-cli.add_command(delete_author)
+cli.add_command(soft_delete_author)
+
+# cli.add_command(add_book)
+# cli.add_command(list_books)
+# cli.add_command(search_books)
+# cli.add_command(add_member)
+# cli.add_command(list_members)
+# cli.add_command(loan_book)
+# cli.add_command(return_book)
+# cli.add_command(list_loans)
+# cli.add_command(check_overdue_books)
 if __name__ == "__main__":
     cli()
     

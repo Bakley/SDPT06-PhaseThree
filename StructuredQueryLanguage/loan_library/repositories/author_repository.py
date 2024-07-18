@@ -14,7 +14,6 @@ class AuthorRepository:
         # self.queries = load_sql_commands('sql/stored_procedures.sql')
 
 
-
     def add_author(self, name):
         execute_query(self.add_author_query, (name,))
 
