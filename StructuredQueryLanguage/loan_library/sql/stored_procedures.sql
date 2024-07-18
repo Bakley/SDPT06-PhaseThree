@@ -1,10 +1,8 @@
--- Add Author
+
 INSERT INTO authors (name) VALUES (?);
 
--- List all authors
 SELECT * FROM authors WHERE deleted = 0;
 
---Update author
 UPDATE authors SET name = ? WHERE id = ?;
 
 --Soft delete author

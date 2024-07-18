@@ -11,7 +11,7 @@ class AuthorService:
         self.repository.add_author(name)
 
     def list_authors(self):
-        self.repository.list_authors()
+        return self.repository.list_authors()
 
     def update_author(self, author_id, name):
         self.repository.update_author(author_id, name)

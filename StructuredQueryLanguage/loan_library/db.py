@@ -21,6 +21,7 @@ def execute_query(query, params=None, fetch_all=True):
     if params:
         cur.execute(query, params)
     else:
+        # import pdb; pdb.set_trace()
         cur.execute(query)
 
     if fetch_all:

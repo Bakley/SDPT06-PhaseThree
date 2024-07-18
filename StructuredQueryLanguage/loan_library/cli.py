@@ -15,15 +15,12 @@ def add_author(name):
     """Add a new author record"""
     author_service.add_author(name)
     click.echo(f'Author "{name} added"')
-@click.command()
-@click.argument('name')
-def add_author(name):
-    click.echo(f'Author "{name}" added.')
 
 @click.command()
 def list_authors():
     click.echo('Listing all authors.')
     authors = author_service.list_authors()
+    # import pdb; pdb.set_trace()
     for author in authors:
         click.echo(f'ID: {author[0]}, Name: {author[1]}')
 
