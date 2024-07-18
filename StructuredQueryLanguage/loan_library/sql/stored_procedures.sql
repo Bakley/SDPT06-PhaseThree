@@ -36,6 +36,8 @@ UPDATE loans SET return_date = ? WHERE id = ?;
 
 SELECT * FROM loans WHERE deleted = 0;
 
+UPDATE loans SET deleted = 1 WHERE id = ?;
+
 SELECT loans.id, books.title, members.name, loans.loan_date
 FROM loans
 JOIN books ON loans.book_id = books.id 
