@@ -20,13 +20,14 @@ def seed_data():
 
 
     #seed Books
-    author_ids = [author.id for author in Author.all()]
+    # import pdb; pdb.set_trace()
+    author_ids = [author[0] for author in Author.all()]
 
     for _ in range(42):
         book = Book(
             title="",
             author_id=random.choice(author_ids),
-            published_date=(datetime(1950, 1, 1), datetime(2020, 12, 31)).isoformat()
+            published_date=random_date(datetime(1950, 1, 1), datetime(2020, 12, 31)).isoformat()
         )
 
         book.save()

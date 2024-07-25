@@ -5,11 +5,12 @@ class Database:
     This file will handle database connections 
     and query execution.
     """
-    def __init__(self, db_name="lib.py"):
+    def __init__(self, db_name="lib.db"):
         self.connection = sqlite3.connect(db_name)
         self.cursor = self.connection.cursor()
 
     def execute(self, query, params=()):
+        # import pdb; pdb.set_trace()
         self.cursor.execute(query, params)
         self.connection.commit()
 

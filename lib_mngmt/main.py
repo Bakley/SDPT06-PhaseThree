@@ -13,7 +13,8 @@ class BaseModel:
 
     @classmethod
     def create_table(cls):
-        columns_definition = "".join([f'{col} {typ}' for col, typ in cls.columns.items()])
+        # import pdb; pdb.set_trace()
+        columns_definition = ", ".join([f'{col} {typ}' for col, typ in cls.columns.items()])
         query = f"CREATE TABLE IF NOT EXISTS {cls.table_name} (id INTEGER PRIMARY KEY, {columns_definition}, deleted BOOLEAN DEFAULT 0)"
         db.execute(query)
 
@@ -36,10 +37,11 @@ class BaseModel:
         return db.fetchall()
     
     def save(self):
+        # import pdb; pdb.set_trace()
         columns = ', '.join(self.columns.keys())
         placeholder = ', '.join(["?" for _ in self.columns])
         values = tuple(getattr(self, col) for col in self.columns.keys())
-        query = f'INSERT INTO {self.table_name} ({columns} VALUES ({placeholder}))'
+        query = f'INSERT INTO {self.table_name} ({columns}) VALUES ({placeholder})'
         db.execute(query, values)
         self.id = db.cursor.lastrowid
 
